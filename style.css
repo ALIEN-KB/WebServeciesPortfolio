@@ -70,9 +70,34 @@ h1 em, .section-heading em { color: var(--signal); font: italic 400 1.08em var(-
 .marquee-group b { color: var(--signal); font: italic 22px var(--serif); }
 .section { padding-block: 96px; }
 .section-heading { max-width: 760px; margin: 20px 0 0; font: 750 clamp(35px, 4vw, 52px)/1.1 var(--display); letter-spacing: -.055em; }
-.audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 44px; }
+.audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); align-items: start; gap: 18px; margin-top: 44px; }
 .audience-card { position: relative; min-height: 270px; border: 1px solid var(--line); border-radius: 22px; padding: 23px; background: var(--paper-bright); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.audience-grid > .audience-card { align-self: start; }
 .audience-card:hover { transform: translateY(-6px); border-color: var(--signal); box-shadow: 0 15px 30px rgb(230 117 61 / 10%); }
+.audience-card[open] { border-color: var(--signal); }
+.audience-summary { display: block; cursor: pointer; list-style: none; }
+.audience-summary::-webkit-details-marker { display: none; }
+.audience-title-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 17px; }
+.audience-title-row h3 { margin: 0; }
+.expand-indicator { display: grid; width: 25px; height: 25px; flex: 0 0 25px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--signal); }
+.expand-indicator::before { content: "+"; font-size: 18px; line-height: 1; }
+.audience-card[open] .expand-indicator::before { content: "−"; }
+.audience-summary .audience-who { display: block; margin-top: 7px; font-size: 11px; }
+.expand-hint { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; border: 1px solid rgb(230 117 61 / 24%); border-radius: 30px; padding: 6px 10px; background: #fff4ed; color: #a9471b; font-size: 10px; font-weight: 800; }
+.expand-hint > span { color: var(--signal); }
+.audience-card:not([open]) .expand-hint { animation: hint-glow 3.2s ease-in-out infinite; }
+.audience-card[open] .expand-hint { display: none; }
+.audience-details { margin-top: 17px; border-top: 1px solid var(--line); padding-top: 15px; }
+.audience-details > p { margin: 0 0 12px; color: var(--ink-soft); font-size: 12px; line-height: 1.65; }
+.audience-details > .audience-details-intro { margin-bottom: 8px; color: var(--ink); }
+.audience-details-intro strong { background: linear-gradient(transparent 57%, rgb(230 117 61 / 27%) 57%); background-repeat: no-repeat; background-size: 0% 100%; animation: text-highlight .9s ease-out forwards; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.audience-details > .audience-details-copy { margin-bottom: 17px; }
+.inspiration-group + .inspiration-group { margin-top: 17px; }
+.inspiration-group h4 { margin: 0 0 7px; font: 700 11px var(--display); }
+.example-links { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.example-links a { display: flex; justify-content: space-between; gap: 10px; border-radius: 9px; padding: 8px 10px; background: var(--muted); font-size: 11px; line-height: 1.4; transition: background .2s ease, color .2s ease; }
+.example-links a:hover { background: var(--ink); color: white; }
+.example-links a span { flex: 0 0 auto; color: var(--signal); }
 .card-number { color: var(--ink-soft); font: italic 13px var(--serif); }
 .audience-icon { display: grid; width: 42px; height: 42px; place-items: center; margin-top: 15px; border-radius: 14px; background: var(--muted); font: 24px var(--serif); transition: background .2s ease, color .2s ease; }
 .audience-card:hover .audience-icon { background: var(--signal); color: white; }
@@ -96,7 +121,7 @@ h1 em, .section-heading em { color: var(--signal); font: italic 400 1.08em var(-
 .testimonial figcaption small { margin-top: 3px; color: rgb(255 255 255 / 62%); font-size: 11px; }
 .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 65px; align-items: start; }
 .about-card { border: 1px solid var(--line); border-radius: 22px; padding: 30px; background: var(--paper-bright); }
-.signature { color: var(--signal); font: italic 82px/.9 var(--serif); }
+.signature { color: var(--signal); font: italic 56px/.95 var(--serif); }
 .about-card h3 { margin: 20px 0 4px; font: 700 21px var(--display); }
 .about-card p { margin: 0; color: var(--ink-soft); font-size: 12px; }
 .experience { display: inline-flex; margin-top: 22px; border-radius: 30px; padding: 8px 14px; background: var(--muted); font-size: 12px; font-weight: 700; }
@@ -136,6 +161,7 @@ h1 em, .section-heading em { color: var(--signal); font: italic 400 1.08em var(-
 .contact-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 27px; }
 .button-whatsapp { background: var(--green); color: white; }
 .button-whatsapp:hover { background: #128b50; }
+.whatsapp-svg { width: 19px; height: 19px; flex: 0 0 auto; fill: currentColor; stroke: none; }
 .site-footer { border-top: 1px solid var(--line); padding-block: 28px; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .footer-inner .wordmark { font-size: 19px; }
@@ -143,12 +169,14 @@ h1 em, .section-heading em { color: var(--signal); font: italic 400 1.08em var(-
 .social-links { display: flex; gap: 20px; font-size: 11px; font-weight: 700; }
 .whatsapp-fab { position: fixed; z-index: 80; right: 20px; bottom: 20px; display: flex; align-items: center; gap: 11px; border-radius: 50px; padding: 12px 17px 12px 12px; background: var(--green); box-shadow: 0 8px 24px rgb(25 169 99 / 35%); color: white; transition: transform .2s ease, box-shadow .2s ease; }
 .whatsapp-fab:hover { transform: scale(1.05); box-shadow: 0 11px 28px rgb(25 169 99 / 45%); }
-.whatsapp-icon { display: grid; width: 28px; height: 28px; place-items: center; border: 1px solid rgb(255 255 255 / 75%); border-radius: 50%; font-size: 17px; }
+.floating-whatsapp-svg { width: 29px; height: 29px; }
 .fab-label { font-size: 12px; font-weight: 800; }
 .reveal { opacity: 0; transform: translateY(23px); transition: opacity .7s ease, transform .7s cubic-bezier(.22, 1, .36, 1); }
 .reveal.is-visible { opacity: 1; transform: none; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 @keyframes ping { 70%, 100% { transform: scale(2.1); opacity: 0; } }
+@keyframes hint-glow { 0%, 72%, 100% { box-shadow: 0 0 0 0 rgb(230 117 61 / 0%); } 84% { box-shadow: 0 0 0 4px rgb(230 117 61 / 12%); } }
+@keyframes text-highlight { to { background-size: 100% 100%; } }
 
 @media (max-width: 900px) {
   .container { width: min(var(--content), calc(100% - 40px)); }
@@ -208,7 +236,6 @@ h1 em, .section-heading em { color: var(--signal); font: italic 400 1.08em var(-
   .contact-actions { flex-direction: column; align-items: stretch; }
   .footer-inner { flex-direction: column; gap: 13px; }
   .whatsapp-fab { right: 14px; bottom: 14px; padding: 10px; }
-  .whatsapp-icon { width: 30px; height: 30px; }
   .fab-label { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
