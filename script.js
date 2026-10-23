@@ -1,6 +1,6 @@
 (() => {
   // Replace this placeholder with the WhatsApp number in country-code format.
-  const WHATSAPP_NUMBER = "923001234567";
+  const WHATSAPP_NUMBER = "923008400196";
   const WHATSAPP_MESSAGE = "Hi Shahmeer! I found StudioWeb online and I'd like to talk about a website for my business.";
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
