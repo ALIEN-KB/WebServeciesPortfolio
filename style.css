@@ -164,6 +164,7 @@ h1 em, .section-heading em { color: var(--signal); font: italic 400 1.08em var(-
 .whatsapp-svg { width: 19px; height: 19px; flex: 0 0 auto; fill: currentColor; stroke: none; }
 .site-footer { border-top: 1px solid var(--line); padding-block: 28px; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.footer-brand-links { display: flex; align-items: center; gap: 24px; }
 .footer-inner .wordmark { font-size: 19px; }
 .footer-inner p { margin: 0; color: var(--ink-soft); font-size: 11px; }
 .social-links { display: flex; gap: 20px; font-size: 11px; font-weight: 700; }
@@ -234,7 +235,8 @@ h1 em, .section-heading em { color: var(--signal); font: italic 400 1.08em var(-
   .contact-section { padding-block: 0 67px; }
   .contact-card { padding: 43px 22px; border-radius: 22px; }
   .contact-actions { flex-direction: column; align-items: stretch; }
-  .footer-inner { flex-direction: column; gap: 13px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 13px; }
+  .footer-brand-links { gap: 18px; }
   .whatsapp-fab { right: 14px; bottom: 14px; padding: 10px; }
   .fab-label { display: none; }
 }
